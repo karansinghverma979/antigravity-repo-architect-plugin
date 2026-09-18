@@ -41,8 +41,18 @@ Always structure repository documentation using progressive disclosure:
 - **Multi-Pathway Matrix**: Binary installation vs Package Manager vs Local Development mode.
 - **Developer Deep Dives**: Link internal architectural details and API contracts into `docs/architecture.md`.
 
+### 4. 🛡️ The 5-Pass Vibe-Coding Pre-Launch Defense
+Before any web application, API, or service is released or pushed to GitHub, enforce the 5-Pass Pre-Launch Security Standard:
+- **Pass 1 (Gitleaks)**: Zero hardcoded secrets, frontend prefix quarantine (`NEXT_PUBLIC_`, `REACT_APP_`, `VITE_`), Supabase RLS verification, Stripe server-side secret isolation.
+- **Pass 2 (Bearer)**: Personal data flow mapping, console log redaction, ban on auth tokens in `localStorage`, cryptographic hashing (`argon2`/`bcrypt`).
+- **Pass 3 (ECC Production Audit)**: Mandatory startup env validation, debug endpoint cleanup, generic client errors without stack traces, security headers (`helmet`), auth route rate limiting.
+- **Pass 4 (Trail of Bits)**: IDOR ownership verification on every endpoint, sovereign server-side payment verification, SQL parameterization, XSS input sanitization.
+- **Pass 5 (ECC Security Review)**: Attacker review: privilege escalation, admin backdoor probes, feature abuse, and business logic flaws.
+
 ## 🛠️ Execution Modes
 - **`audit`**: Run deep scans on current directory for hardcoded paths, exposed secrets, unpinned actions, and missing community health files.
 - **`scaffold`**: Generate canonical archetype skeletons (.NET/Rust CLI, MCP Server, Python Package, Fullstack Web).
+- **`vibe-security`**: Execute full 5-pass pre-launch application security review.
 - **`readme`**: Author or upgrade a high-density, dual-audience `README.md`.
 - **`secure`**: Apply OpenSSF supply chain hardening to existing workflows.
+- **`ship`**: Pre-flight audit, semantic commit, and remote synchronization.

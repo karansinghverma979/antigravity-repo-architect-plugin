@@ -158,6 +158,47 @@ if ($LeakedSecrets.Count -eq 0) {
 }
 
 # -------------------------------------------------------------
+# 2B. VIBE-CODING CODE-LEVEL APP DEFENSE (Gitleaks, Bearer, ECC)
+# -------------------------------------------------------------
+$CodeFiles = $AllFiles | Where-Object { $_.Extension -in @('.js', '.ts', '.jsx', '.tsx', '.py', '.cs', '.go', '.rs', '.php', '.rb', '.html') }
+$VibeSecurityIssues = @()
+
+foreach ($file in $CodeFiles) {
+    $lines = Get-Content -Path $file.FullName -ErrorAction SilentlyContinue
+    $lineIdx = 0
+    foreach ($line in $lines) {
+        $lineIdx++
+        $rel = $file.FullName.Substring($TargetDir.Length).TrimStart('\', '/')
+        
+        # 1. Frontend prefix leakage (NEXT_PUBLIC_, REACT_APP_, VITE_ exposing private secrets)
+        if ($line -match '(?i)(?:NEXT_PUBLIC_|REACT_APP_|VITE_)[a-z0-9_]*(?:SECRET|PRIVATE|SERVICE_ROLE|DATABASE_URL|ADMIN_KEY)') {
+            $VibeSecurityIssues += "$rel (Line $lineIdx): Dangerous frontend-prefixed secret: $($line.Trim())"
+        }
+        
+        # 2. Insecure client storage of auth credentials
+        if ($line -match '(?i)localStorage\.setItem\s*\(\s*[''"][a-z0-9_\-]*(?:token|jwt|auth|password|secret)') {
+            $VibeSecurityIssues += "$rel (Line $lineIdx): Insecure localStorage usage for auth credential: $($line.Trim())"
+        }
+        
+        # 3. Debug logging of credentials or raw environment dumps
+        if ($line -match '(?i)console\.log\s*\(\s*(?:process\.env|.*(?:password|api_key|secret_key|private_key))') {
+            $VibeSecurityIssues += "$rel (Line $lineIdx): Debug logging of sensitive environment/credential: $($line.Trim())"
+        }
+
+        # 4. Backdoor endpoints or security FIXME comments
+        if ($line -match '(?i)(?:/admin-backdoor|/seed-data|FIXME:\s*.*auth|TODO:\s*.*security)') {
+            $VibeSecurityIssues += "$rel (Line $lineIdx): Unhardened debug backdoor or incomplete security marker: $($line.Trim())"
+        }
+    }
+}
+
+if ($VibeSecurityIssues.Count -eq 0) {
+    Report-Result -Category "Vibe Security" -Status "PASS" -Message "Zero frontend secret leaks, insecure storage, or debug backdoors."
+} else {
+    Report-Result -Category "Vibe Security" -Status "WARN" -Message "$($VibeSecurityIssues.Count) potential application security risk(s) detected:" -Details $VibeSecurityIssues
+}
+
+# -------------------------------------------------------------
 # 3. RUNTIME STATE QUARANTINE (Motobook Invariant)
 # -------------------------------------------------------------
 $StateFiles = Get-ChildItem -Path $TargetDir -Recurse -File -Include @('*.sqlite', '*.db', '*.sqlite3') | Where-Object {

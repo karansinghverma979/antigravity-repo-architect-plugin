@@ -29,6 +29,9 @@ Repo Architect enforces three world-class standards simultaneously:
 │ /repo-architect   │ Injects .github/, .gitattributes,       │
 │ scaffold [type]   │ .gitignore, templates & security policy │
 ├───────────────────┼─────────────────────────────────────────┤
+│ /repo-architect   │ 5-Pass deep vibe-coding security review │
+│ vibe-security     │ (Client leaks, PII, IDOR, Attacker view)│
+├───────────────────┼─────────────────────────────────────────┤
 │ /repo-architect   │ Generates or refactors README using the │
 │ readme            │ Dual-Audience Progressive Disclosure    │
 ├───────────────────┼─────────────────────────────────────────┤
@@ -78,7 +81,15 @@ Drafts or restructures `README.md` following the [Dual-Audience Specification](.
   - Option C: Package manager or local dev build from source.
 - **Progressive Disclosure**: Summarizes build steps in root README and anchors deep internals to `docs/architecture.md`.
 
-### 4. 🔒 OpenSSF Security Hardening (`secure`)
+### 4. 🛡️ 5-Pass Vibe-Coding Security Review (`vibe-security`)
+Performs a deep pre-launch application security review based on [Vibe Security Defense](./references/vibe_security_defense.md):
+- **Pass 1 (Gitleaks)**: Secret relocation, frontend prefix quarantine (`NEXT_PUBLIC_`, `REACT_APP_`, `VITE_`), Supabase RLS verification, Stripe key separation.
+- **Pass 2 (Bearer)**: Personal data mapping, log redaction, ban on storing auth tokens/PII in `localStorage`, bcrypt/argon2 hashing.
+- **Pass 3 (ECC Production Audit)**: Environment startup validation, debug removal, generic error responses without stack traces, security headers (`helmet`), rate limiting, CORS domain isolation.
+- **Pass 4 (Trail of Bits)**: IDOR & resource ownership checks, sovereign server-side payment logic, SQL parameterization, XSS input sanitization, file upload magic-byte verification.
+- **Pass 5 (ECC Security Review)**: Proactive attacker review: privilege escalation, admin backdoor probes, feature abuse, and business logic flaws.
+
+### 5. 🔒 OpenSSF Security Hardening (`secure`)
 Hardens all workflow files in `.github/workflows/`:
 - Injects top-level `permissions: contents: read`.
 - Pins all third-party actions to immutable commit SHAs with inline version hints:
@@ -88,7 +99,7 @@ Hardens all workflow files in `.github/workflows/`:
 - Ensures `.github/dependabot.yml` is present.
 - Injects standard `SECURITY.md`.
 
-### 5. 🚢 Pre-Flight Release & Shipping (`ship`)
+### 6. 🚢 Pre-Flight Release & Shipping (`ship`)
 Before pushing commits to GitHub:
 1. Run `audit_repo.ps1 -Strict`.
 2. Verify all uncommitted files are accounted for (zero untracked scratch files).
@@ -101,6 +112,7 @@ Before pushing commits to GitHub:
 ## 📚 Deep Reference Playbooks
 
 Before executing complex repository overhauls, consult the authoritative references:
+- **[The 5-Pass Vibe-Coding Security Defense](./references/vibe_security_defense.md)**: Gitleaks, Bearer, ECC Production Audit, Trail of Bits, and Attacker Review.
 - **[OpenSSF Scorecard Hardening Guide](./references/openssf_scorecard_hardening.md)**: Action pinning table, permissions model, supply chain defense.
 - **[The Motobook ⇄ GitHub Co-existence Guide](./references/motobook_github_coexistence.md)**: The 4-Wall Quarantine, path portability, and runtime state isolation.
 - **[Dual-Audience README Specification](./references/dual_audience_readme_spec.md)**: The 5-second hook, multi-pathway quickstarts, progressive disclosure.

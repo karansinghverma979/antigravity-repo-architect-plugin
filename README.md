@@ -23,7 +23,8 @@ antigravity-repo-architect-plugin/
 │           ├── archetype_blueprints.md   # CLI, MCP, Python, Web layouts
 │           ├── dual_audience_readme_spec.md # Non-tech + peer dev progressive disclosure
 │           ├── motobook_github_coexistence.md # 4-Wall Quarantine & path invariants
-│           └── openssf_scorecard_hardening.md # Token least-privilege & SHA pinning
+│           ├── openssf_scorecard_hardening.md # Token least-privilege & SHA pinning
+│           └── vibe_security_defense.md  # 5-Pass Pre-Launch Security (Gitleaks, Bearer, ECC)
 ├── .gitattributes
 ├── .gitignore
 ├── LICENSE
@@ -108,6 +109,14 @@ pwsh -NoProfile -File ~/.gemini/config/plugins/repo-architect-plugin/skills/repo
 5. **🔒 OpenSSF Supply Chain Hardening (`secure`)**:
    - Automatically injects pinned 40-character commit SHAs, least-privilege token permissions, and automated Dependabot configuration.
 
+6. **🛡️ 5-Pass Vibe-Coding Pre-Launch Defense (`vibe-security`)**:
+   - Evaluates applications against real-world breach patterns:
+     - *Pass 1 (Gitleaks)*: Scans for frontend prefix leaks (`NEXT_PUBLIC_`, `REACT_APP_`, `VITE_`), Supabase RLS gaps, and client-side Stripe secrets.
+     - *Pass 2 (Bearer)*: Audits personal data flows, PII in `console.log`, and enforces `httpOnly` cookies over `localStorage`.
+     - *Pass 3 (ECC Production Audit)*: Enforces startup environment validation, debug endpoint cleanup, generic error masking, and HTTP security headers.
+     - *Pass 4 (Trail of Bits)*: Validates IDOR protection, sovereign server-side payment logic, and SQL/XSS input sanitization.
+     - *Pass 5 (ECC Security Review)*: Probes privilege escalation, admin backdoor endpoints, and business logic exploits.
+
 ---
 
 ## 🛠️ Development & Contributing
@@ -119,6 +128,7 @@ pwsh -NoProfile -File ./skills/repo-architect/scripts/audit_repo.ps1
 ```
 
 For detailed architectural specs, see:
+- [5-Pass Vibe-Coding Security Defense](skills/repo-architect/references/vibe_security_defense.md)
 - [OpenSSF Scorecard Hardening Guide](skills/repo-architect/references/openssf_scorecard_hardening.md)
 - [The Motobook ⇄ GitHub Co-existence Guide](skills/repo-architect/references/motobook_github_coexistence.md)
 - [Dual-Audience README Specification](skills/repo-architect/references/dual_audience_readme_spec.md)
