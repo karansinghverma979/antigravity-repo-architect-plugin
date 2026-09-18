@@ -1,0 +1,23 @@
+# OS metadata
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# IDE and Editor artifacts
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Local development / environment secrets
+.env
+.env.local
+*.local
+secrets/
+
+# PowerShell / Scratch artifacts
+*.log
+scratch/
+bin/
+obj/
