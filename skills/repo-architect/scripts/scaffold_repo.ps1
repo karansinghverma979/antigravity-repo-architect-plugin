@@ -179,7 +179,8 @@ Only the latest release receives active security patches.
 **Please do not report security vulnerabilities through public GitHub issues.**
 
 To report a vulnerability:
-1. Use GitHub's private vulnerability reporting feature (if enabled).
+1. Use GitHub's private vulnerability reporting feature on the repository:
+   `https://github.com/<owner>/<repo>/security/advisories/new`
 2. Or contact the maintainer directly via private channels.
 
 Please provide:
@@ -327,6 +328,39 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 "@
 Ensure-File (Join-Path $TargetDir ".github\workflows\ci.yml") $CiWorkflowContent ".github/workflows/ci.yml"
+
+# 9. GitHub Official CodeQL SAST Analysis Workflow
+$CodeQLContent = @"
+name: "CodeQL Analysis"
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '30 1 * * 0'
+
+permissions:
+  contents: read
+  security-events: write
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@b56ba49b26e50535fa1e7f7db0f4f7b4bf65d80d # v3.28.10
+        with:
+          languages: javascript-typescript
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@b56ba49b26e50535fa1e7f7db0f4f7b4bf65d80d # v3.28.10
+"@
+Ensure-File (Join-Path $TargetDir ".github\workflows\codeql.yml") $CodeQLContent ".github/workflows/codeql.yml"
 
 Write-Host ""
 Write-Host "════════════════════════════════════════════════════════════════" -ForegroundColor Green

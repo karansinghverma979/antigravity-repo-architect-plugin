@@ -112,6 +112,7 @@ Before pushing commits to GitHub:
 ## 📚 Deep Reference Playbooks
 
 Before executing complex repository overhauls, consult the authoritative references:
+- **[GitHub & Microsoft Official Best Practices](./references/github_official_best_practices.md)**: Security quadrant, CodeQL SAST, Inverted Pyramid docs, Git LFS size governance.
 - **[The 5-Pass Vibe-Coding Security Defense](./references/vibe_security_defense.md)**: Gitleaks, Bearer, ECC Production Audit, Trail of Bits, and Attacker Review.
 - **[OpenSSF Scorecard Hardening Guide](./references/openssf_scorecard_hardening.md)**: Action pinning table, permissions model, supply chain defense.
 - **[The Motobook ⇄ GitHub Co-existence Guide](./references/motobook_github_coexistence.md)**: The 4-Wall Quarantine, path portability, and runtime state isolation.

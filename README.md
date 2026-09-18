@@ -22,6 +22,7 @@ antigravity-repo-architect-plugin/
 │       └── references/
 │           ├── archetype_blueprints.md   # CLI, MCP, Python, Web layouts
 │           ├── dual_audience_readme_spec.md # Non-tech + peer dev progressive disclosure
+│           ├── github_official_best_practices.md # GitHub & MS Learn security, CodeQL, LFS
 │           ├── motobook_github_coexistence.md # 4-Wall Quarantine & path invariants
 │           ├── openssf_scorecard_hardening.md # Token least-privilege & SHA pinning
 │           └── vibe_security_defense.md  # 5-Pass Pre-Launch Security (Gitleaks, Bearer, ECC)
@@ -128,6 +129,7 @@ pwsh -NoProfile -File ./skills/repo-architect/scripts/audit_repo.ps1
 ```
 
 For detailed architectural specs, see:
+- [GitHub & Microsoft Official Best Practices](skills/repo-architect/references/github_official_best_practices.md)
 - [5-Pass Vibe-Coding Security Defense](skills/repo-architect/references/vibe_security_defense.md)
 - [OpenSSF Scorecard Hardening Guide](skills/repo-architect/references/openssf_scorecard_hardening.md)
 - [The Motobook ⇄ GitHub Co-existence Guide](skills/repo-architect/references/motobook_github_coexistence.md)

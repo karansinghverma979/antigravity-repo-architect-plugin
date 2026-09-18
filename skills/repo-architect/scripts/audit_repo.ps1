@@ -239,6 +239,25 @@ if (-not (Test-Path $GitIgnore)) {
 }
 
 # -------------------------------------------------------------
+# 4B. REPOSITORY SIZE & GIT LFS GOVERNANCE (GitHub Limits)
+# -------------------------------------------------------------
+$LargeFiles = Get-ChildItem -Path $TargetDir -Recurse -File | Where-Object {
+    $rel = $_.FullName.Substring($TargetDir.Length)
+    $skip = $false
+    foreach ($ex in $PathExcludes) {
+        if ($rel -match "[\\/]$([regex]::Escape($ex))[\\/]") { $skip = $true; break }
+    }
+    (-not $skip) -and ($_.Length -gt 50MB)
+}
+
+if ($LargeFiles.Count -eq 0) {
+    Report-Result -Category "Large Files" -Status "PASS" -Message "Zero files exceed GitHub's 50MB warning / 100MB limit."
+} else {
+    $details = $LargeFiles | ForEach-Object { "$($_.FullName.Substring($TargetDir.Length).TrimStart('\', '/')) ($([math]::Round($_.Length / 1MB, 2)) MB)" }
+    Report-Result -Category "Large Files" -Status "WARN" -Message "$($LargeFiles.Count) file(s) exceed 50 MB. Track via Git LFS in .gitattributes to avoid push failure." -Details $details
+}
+
+# -------------------------------------------------------------
 # 5. GITHUB COMMUNITY STANDARDS & DOCUMENTATION
 # -------------------------------------------------------------
 $ReadmePath = Join-Path $TargetDir "README.md"
