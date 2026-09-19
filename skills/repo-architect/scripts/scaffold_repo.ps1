@@ -329,8 +329,15 @@ jobs:
 "@
 Ensure-File (Join-Path $TargetDir ".github\workflows\ci.yml") $CiWorkflowContent ".github/workflows/ci.yml"
 
-# 9. GitHub Official CodeQL SAST Analysis Workflow
-$CodeQLContent = @"
+# 9. GitHub Official CodeQL SAST Analysis Workflow (Only for archetypes with supported languages)
+$CodeQLLang = switch ($Archetype) {
+    'python' { 'python' }
+    'web'    { 'javascript-typescript' }
+    default  { $null }
+}
+
+if ($CodeQLLang) {
+    $CodeQLContent = @"
 name: "CodeQL Analysis"
 
 on:
@@ -355,12 +362,13 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@b56ba49b26e50535fa1e7f7db0f4f7b4bf65d80d # v3.28.10
         with:
-          languages: javascript-typescript
+          languages: $CodeQLLang
 
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@b56ba49b26e50535fa1e7f7db0f4f7b4bf65d80d # v3.28.10
 "@
-Ensure-File (Join-Path $TargetDir ".github\workflows\codeql.yml") $CodeQLContent ".github/workflows/codeql.yml"
+    Ensure-File (Join-Path $TargetDir ".github\workflows\codeql.yml") $CodeQLContent ".github/workflows/codeql.yml"
+}
 
 Write-Host ""
 Write-Host "════════════════════════════════════════════════════════════════" -ForegroundColor Green
