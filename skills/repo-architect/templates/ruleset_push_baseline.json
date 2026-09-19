@@ -1,0 +1,46 @@
+{
+  "name": "sovereign-push-quarantine",
+  "target": "push",
+  "enforcement": "active",
+  "rules": [
+    {
+      "type": "file_extension_restriction",
+      "parameters": {
+        "restricted_file_extensions": [
+          "*.sqlite",
+          "*.sqlite3",
+          "*.db",
+          "*.pem",
+          "*.key",
+          "*.pfx",
+          "*.keystore",
+          "*.jks"
+        ]
+      }
+    },
+    {
+      "type": "max_file_size",
+      "parameters": {
+        "max_file_size": 50
+      }
+    },
+    {
+      "type": "file_path_restriction",
+      "parameters": {
+        "restricted_file_paths": [
+          ".env",
+          ".env.local",
+          ".env.production",
+          "memory/sessions/*"
+        ]
+      }
+    }
+  ],
+  "bypass_actors": [
+    {
+      "actor_id": 1,
+      "actor_type": "RepositoryRole",
+      "bypass_mode": "always"
+    }
+  ]
+}

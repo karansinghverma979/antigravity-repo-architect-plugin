@@ -19,10 +19,14 @@ antigravity-repo-architect-plugin/
 │       ├── scripts/
 │       │   ├── audit_repo.ps1            # 50ms high-speed security, path & OpenSSF auditor
 │       │   └── scaffold_repo.ps1         # Canonical repository scaffolder
+│       ├── templates/
+│       │   ├── ruleset_branch_baseline.json # GitHub default branch protection ruleset
+│       │   └── ruleset_push_baseline.json   # GitHub push quarantine ruleset (*.sqlite, *.env, >50MB)
 │       └── references/
 │           ├── archetype_blueprints.md   # CLI, MCP, Python, Web layouts
 │           ├── dual_audience_readme_spec.md # Non-tech + peer dev progressive disclosure
 │           ├── github_official_best_practices.md # GitHub & MS Learn security, CodeQL, LFS
+│           ├── github_rulesets_governance.md # Server-side push quarantine & ruleset API
 │           ├── motobook_github_coexistence.md # 4-Wall Quarantine & path invariants
 │           ├── openssf_scorecard_hardening.md # Token least-privilege & SHA pinning
 │           └── vibe_security_defense.md  # 5-Pass Pre-Launch Security (Gitleaks, Bearer, ECC)
@@ -92,10 +96,11 @@ pwsh -NoProfile -File ~/.gemini/config/plugins/repo-architect-plugin/skills/repo
 
 2. **🧱 The 4-Wall Motobook ⇄ GitHub Quarantine**:
    - Solves the everyday challenge of developing and running code locally while syncing live to GitHub:
-     - *Wall 1: Runtime State Decoupling* (stores state in `%LOCALAPPDATA%` or ignored directories).
-     - *Wall 2: Zero-Config Dynamic Path Resolution* (dynamic expansion via standard libraries).
-     - *Wall 3: Dual-Stage Environment Shield* (`.env` ignored, `.env.example` committed).
-     - *Wall 4: CRLF/LF Line-Ending Firewall* (`.gitattributes` rules).
+      - *Wall 1: Runtime State Decoupling* (stores state in `%LOCALAPPDATA%` or ignored directories).
+      - *Wall 2: Zero-Config Dynamic Path Resolution* (dynamic expansion via standard libraries).
+      - *Wall 3: Dual-Stage Environment Shield* (`.env` ignored, `.env.example` committed).
+      - *Wall 4: CRLF/LF Line-Ending Firewall* (`.gitattributes` rules).
+      - *Wall 5: Server-Side Push Ruleset Quarantine* (GitHub push ruleset hard-rejects `*.sqlite`, `.env`, >50MB files at the edge).
 
 3. **🏗️ Canonical Archetype Scaffolding (`scaffold`)**:
    - Generates production-ready configurations tailored to the project type:
@@ -107,8 +112,9 @@ pwsh -NoProfile -File ~/.gemini/config/plugins/repo-architect-plugin/skills/repo
 4. **📄 Dual-Audience README Engine (`readme`)**:
    - Enforces Progressive Disclosure: 5-second visual hook (ASCII box card) and 30-second quickstart for end-users, with deep architectural links (`docs/architecture.md`) for engineers.
 
-5. **🔒 OpenSSF Supply Chain Hardening (`secure`)**:
+5. **🔒 OpenSSF Supply Chain Hardening & GitHub Rulesets (`secure`)**:
    - Automatically injects pinned 40-character commit SHAs, least-privilege token permissions, and automated Dependabot configuration.
+   - Provides declarative GitHub Ruleset templates (`ruleset_branch_baseline.json`, `ruleset_push_baseline.json`) to enforce branch tamper resistance and server-side push filtering via GitHub API or web UI.
 
 6. **🛡️ 5-Pass Vibe-Coding Pre-Launch Defense (`vibe-security`)**:
    - Evaluates applications against real-world breach patterns:
@@ -129,6 +135,7 @@ pwsh -NoProfile -File ./skills/repo-architect/scripts/audit_repo.ps1
 ```
 
 For detailed architectural specs, see:
+- [GitHub Rulesets & Sovereign Governance](skills/repo-architect/references/github_rulesets_governance.md)
 - [GitHub & Microsoft Official Best Practices](skills/repo-architect/references/github_official_best_practices.md)
 - [5-Pass Vibe-Coding Security Defense](skills/repo-architect/references/vibe_security_defense.md)
 - [OpenSSF Scorecard Hardening Guide](skills/repo-architect/references/openssf_scorecard_hardening.md)

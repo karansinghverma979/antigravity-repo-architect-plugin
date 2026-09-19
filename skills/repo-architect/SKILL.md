@@ -89,8 +89,8 @@ Performs a deep pre-launch application security review based on [Vibe Security D
 - **Pass 4 (Trail of Bits)**: IDOR & resource ownership checks, sovereign server-side payment logic, SQL parameterization, XSS input sanitization, file upload magic-byte verification.
 - **Pass 5 (ECC Security Review)**: Proactive attacker review: privilege escalation, admin backdoor probes, feature abuse, and business logic flaws.
 
-### 5. 🔒 OpenSSF Security Hardening (`secure`)
-Hardens all workflow files in `.github/workflows/`:
+### 5. 🔒 OpenSSF Hardening & GitHub Rulesets (`secure`)
+Hardens all workflow files and repository branch/push protections:
 - Injects top-level `permissions: contents: read`.
 - Pins all third-party actions to immutable commit SHAs with inline version hints:
   ```yaml
@@ -98,6 +98,7 @@ Hardens all workflow files in `.github/workflows/`:
   ```
 - Ensures `.github/dependabot.yml` is present.
 - Injects standard `SECURITY.md`.
+- **GitHub Rulesets Provisioning**: Deploys declarative ruleset JSON templates (`templates/ruleset_branch_baseline.json` and `templates/ruleset_push_baseline.json`) to enforce server-side push filtering (blocking `.sqlite`, `.env`, >50MB files at the GitHub edge) and block force pushes on default branches.
 
 ### 6. 🚢 Pre-Flight Release & Shipping (`ship`)
 Before pushing commits to GitHub:
@@ -112,6 +113,7 @@ Before pushing commits to GitHub:
 ## 📚 Deep Reference Playbooks
 
 Before executing complex repository overhauls, consult the authoritative references:
+- **[GitHub Rulesets & Sovereign Governance](./references/github_rulesets_governance.md)**: Server-side push quarantine, branch protections, and declarative JSON deployment.
 - **[GitHub & Microsoft Official Best Practices](./references/github_official_best_practices.md)**: Security quadrant, CodeQL SAST, Inverted Pyramid docs, Git LFS size governance.
 - **[The 5-Pass Vibe-Coding Security Defense](./references/vibe_security_defense.md)**: Gitleaks, Bearer, ECC Production Audit, Trail of Bits, and Attacker Review.
 - **[OpenSSF Scorecard Hardening Guide](./references/openssf_scorecard_hardening.md)**: Action pinning table, permissions model, supply chain defense.
