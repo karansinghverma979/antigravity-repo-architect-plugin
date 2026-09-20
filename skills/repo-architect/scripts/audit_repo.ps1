@@ -82,21 +82,21 @@ $CurrentUser = [Environment]::UserName
 $LeakedPaths = @()
 $AllFiles = Get-ChildItem -Path $TargetDir -Recurse -File | Where-Object {
     $rel = $_.FullName.Substring($TargetDir.Length)
-    $skip = $false
+    $parts = $rel -split '[\\/]'
     foreach ($ex in $PathExcludes) {
-        if ($rel -match "[\\/]$([regex]::Escape($ex))[\\/]") { $skip = $true; break }
+        if ($parts -contains $ex) { $skip = $true; break }
     }
     (-not $skip) -and ($TextExtensions -contains $_.Extension -or $_.Name -in @('Dockerfile', 'Makefile'))
 }
 
+$userPattern = '(?i)[a-z]:\\users\\' + [regex]::Escape($CurrentUser)
 foreach ($file in $AllFiles) {
     if ($PSCommandPath -and $file.FullName -eq (Resolve-Path $PSCommandPath).Path) { continue }
     $lines = Get-Content -Path $file.FullName -ErrorAction SilentlyContinue
     $lineNum = 0
     foreach ($line in $lines) {
         $lineNum++
-        # Flag actual user profile leaks (e.g. C:\Users\karan\ or current username)
-        if ($line -match "(?i)[a-z]:\\users\\$([regex]::Escape($CurrentUser))" -or ($line -match '(?i)[a-z]:\\users\\[a-z0-9_\.-]+' -and $line -notmatch '<[a-z0-9_\.-]+>' -and $line -notmatch 'placeholder')) {
+        if ($line -match $userPattern -or ($line -match '(?i)[a-z]:\\users\\[a-z0-9_\.-]+' -and $line -notmatch '<[a-z0-9_\.-]+>' -and $line -notmatch 'placeholder')) {
             $relPath = $file.FullName.Substring($TargetDir.Length).TrimStart('\', '/')
             $LeakedPaths += "$relPath (Line $lineNum): $($line.Trim())"
         }
@@ -203,9 +203,9 @@ if ($VibeSecurityIssues.Count -eq 0) {
 # -------------------------------------------------------------
 $StateFiles = Get-ChildItem -Path $TargetDir -Recurse -File -Include @('*.sqlite', '*.db', '*.sqlite3') | Where-Object {
     $rel = $_.FullName.Substring($TargetDir.Length)
-    $skip = $false
+    $parts = $rel -split '[\\/]'
     foreach ($ex in $PathExcludes) {
-        if ($rel -match "[\\/]$([regex]::Escape($ex))[\\/]") { $skip = $true; break }
+        if ($parts -contains $ex) { $skip = $true; break }
     }
     -not $skip
 }
@@ -243,9 +243,9 @@ if (-not (Test-Path $GitIgnore)) {
 # -------------------------------------------------------------
 $LargeFiles = Get-ChildItem -Path $TargetDir -Recurse -File | Where-Object {
     $rel = $_.FullName.Substring($TargetDir.Length)
-    $skip = $false
+    $parts = $rel -split '[\\/]'
     foreach ($ex in $PathExcludes) {
-        if ($rel -match "[\\/]$([regex]::Escape($ex))[\\/]") { $skip = $true; break }
+        if ($parts -contains $ex) { $skip = $true; break }
     }
     (-not $skip) -and ($_.Length -gt 50MB)
 }
@@ -253,7 +253,11 @@ $LargeFiles = Get-ChildItem -Path $TargetDir -Recurse -File | Where-Object {
 if ($LargeFiles.Count -eq 0) {
     Report-Result -Category "Large Files" -Status "PASS" -Message "Zero files exceed GitHub's 50MB warning / 100MB limit."
 } else {
-    $details = $LargeFiles | ForEach-Object { "$($_.FullName.Substring($TargetDir.Length).TrimStart('\', '/')) ($([math]::Round($_.Length / 1MB, 2)) MB)" }
+    $details = $LargeFiles | ForEach-Object {
+        $mb = [math]::Round($_.Length / 1MB, 2)
+        $relName = $_.FullName.Substring($TargetDir.Length).TrimStart('\').TrimStart('/')
+        "$relName [$mb MB]"
+    }
     Report-Result -Category "Large Files" -Status "WARN" -Message "$($LargeFiles.Count) file(s) exceed 50 MB. Track via Git LFS in .gitattributes to avoid push failure." -Details $details
 }
 
@@ -266,7 +270,7 @@ if (-not (Test-Path $ReadmePath)) {
 } else {
     $readmeContent = Get-Content -Path $ReadmePath -Raw
     $hasAscii = ($readmeContent -match '┌' -or $readmeContent -match '```text' -or $readmeContent -match '```mermaid')
-    $hasQuickstart = ($readmeContent -match '(?i)##?\s*(?:🚀\s*)?quickstart' -or $readmeContent -match '(?i)##?\s*installation')
+    $hasQuickstart = ($readmeContent -match '(?i)##?\s*.*quickstart' -or $readmeContent -match '(?i)##?\s*.*installation')
     
     if ($hasAscii -and $hasQuickstart) {
         Report-Result -Category "Documentation" -Status "PASS" -Message "'README.md' satisfies Dual-Audience standard (Visual flow + Quickstart)."
