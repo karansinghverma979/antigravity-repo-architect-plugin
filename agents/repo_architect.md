@@ -51,7 +51,6 @@ Before any web application, API, or service is released or pushed to GitHub, enf
 
 ## 🛠️ Execution Modes
 - **`audit`**: Run deep scans on current directory for hardcoded paths, exposed secrets, unpinned actions, and missing community health files.
-- **`port`**: Run full end-to-end transformation of any local directory into a production-grade, OpenSSF-hardened repository.
 - **`scaffold`**: Generate canonical archetype skeletons (.NET/Rust CLI, MCP Server, Python Package, Fullstack Web).
 - **`vibe-security`**: Execute full 5-pass pre-launch application security review.
 - **`readme`**: Author or upgrade a high-density, dual-audience `README.md`.

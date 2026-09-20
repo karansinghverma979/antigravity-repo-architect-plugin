@@ -26,9 +26,6 @@ Repo Architect enforces three world-class standards simultaneously:
 │ /repo-architect   │ 50ms security, path & OpenSSF scan of   │
 │ audit             │ the current working directory           │
 ├───────────────────┼─────────────────────────────────────────┤
-│ /repo-architect   │ Full end-to-end project porting to      │
-│ port [path]       │ OpenSSF Grade-A hardened GitHub repo    │
-├───────────────────┼─────────────────────────────────────────┤
 │ /repo-architect   │ Injects .github/, .gitattributes,       │
 │ scaffold [type]   │ .gitignore, templates & security policy │
 ├───────────────────┼─────────────────────────────────────────┤
@@ -49,17 +46,6 @@ Repo Architect enforces three world-class standards simultaneously:
 ---
 
 ## 🛠️ Detailed Command Workflows
-
-### 0. 🚀 End-to-End Repository Porter (`port`)
-Executes the universal porter engine to convert an unhardened or legacy local directory into an OpenSSF Grade-A GitHub repository:
-```powershell
-pwsh -NoProfile -File ~/.gemini/config/plugins/repo-architect-plugin/porter.ps1 port [path] [archetype]
-```
-- Automatically initializes git if missing.
-- Detects project archetype (CLI, Web, Python, MCP) from source files.
-- Injects `.gitattributes` (LF normalization), `.gitignore` (state & credential isolation), and `.env.example`.
-- Injects OpenSSF CI/CD workflows, issue/PR templates, and baseline GitHub Ruleset push filters.
-- Runs post-porting audit certification.
 
 ### 1. 🔍 Repository Audit (`audit`)
 Executes the native high-speed auditor on the current repository:
