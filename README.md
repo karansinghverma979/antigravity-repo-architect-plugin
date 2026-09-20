@@ -1,8 +1,54 @@
 # 🏛️ antigravity-repo-architect-plugin
 
+<p align="center">
+  <img src="assets/poster.png" alt="Repo Architect Hero Poster" width="100%" style="border-radius: 12px; box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);" />
+</p>
+
+<p align="center">
+  <a href="https://github.com/karansinghverma979/antigravity-repo-architect-plugin/actions/workflows/ci.yml">
+    <img src="https://github.com/karansinghverma979/antigravity-repo-architect-plugin/actions/workflows/ci.yml/badge.svg" alt="CI Status" />
+  </a>
+  <a href="https://securityscorecards.dev">
+    <img src="https://img.shields.io/badge/OpenSSF-Hardened%20Grade%20A-blue.svg" alt="OpenSSF Hardened" />
+  </a>
+  <a href="https://opensource.org/licenses/MIT">
+    <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT" />
+  </a>
+  <a href="https://github.com/PowerShell/PowerShell">
+    <img src="https://img.shields.io/badge/PowerShell-7.0%2B-blue.svg" alt="PowerShell 7+" />
+  </a>
+  <a href="https://github.com/karansinghverma979/antigravity-repo-architect-plugin">
+    <img src="https://img.shields.io/badge/Google%20Antigravity-Plugin%20v1.1.0-orange.svg" alt="Google Antigravity Plugin" />
+  </a>
+  <a href="#">
+    <img src="https://img.shields.io/badge/Workstation%20Quarantine-Zero%20Leaks-success.svg" alt="Zero-Leak Guarantee" />
+  </a>
+</p>
+
 > **Autonomous GitHub Repository Architect, OpenSSF Security Hardener & Dual-Audience Documentation Engine for Google Antigravity.**
 
 An enterprise-grade Antigravity plugin engineered to bridge the gap between building tools locally on a developer workstation and publishing world-class, production-ready repositories on GitHub. It combines an autonomous AI agent (`repo_architect`), specialized skills, a Win32/PowerShell 7 audit engine (`audit_repo.ps1`), and OpenSSF supply-chain hardening playbooks.
+
+---
+
+## 🎨 Brand Assets & Design Poster
+
+The repository comes equipped with high-resolution vector and raster branding assets designed for GitHub releases, docs, and banners:
+
+| Asset | Type | Dimensions | Preview / File Link |
+| :--- | :--- | :--- | :--- |
+| **Hero Poster / Banner** | Vector SVG & 4K PNG | 1200 × 500 | [`assets/poster.svg`](assets/poster.svg) • [`assets/poster.png`](assets/poster.png) |
+| **Brand Logo / Icon** | Vector SVG & Crisp PNG | 512 × 512 | [`assets/logo.svg`](assets/logo.svg) • [`assets/logo.png`](assets/logo.png) |
+
+```text
+┌─────────────────────────────────────────────────────────────────────────┐
+│                           REPO ARCHITECT BRAND                          │
+├─────────────────────────────────────────────────────────────────────────┤
+│  [ Classical Portico / Pillars ] ──► Structural Repository Architecture │
+│  [ Illuminated Cyber Shield ]    ──► OpenSSF Sentry & SLSA Hardening    │
+│  [ Dynamic Node Graph & Key ]    ──► Zero-Leak Workstation Quarantine   │
+└─────────────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
@@ -10,6 +56,12 @@ An enterprise-grade Antigravity plugin engineered to bridge the gap between buil
 
 ```text
 antigravity-repo-architect-plugin/
+├── assets/
+│   ├── poster.png                        # High-resolution hero banner poster
+│   ├── poster.svg                        # Vector widescreen repository poster
+│   ├── logo.png                          # High-resolution brand logo icon
+│   ├── logo.svg                          # Vector brand logo icon
+│   └── banner.svg                        # Alternative banner distribution
 ├── agents/
 │   └── repo_architect.md                 # Autonomous Agent definition
 ├── plugin.json                           # Antigravity Plugin manifest
@@ -30,10 +82,17 @@ antigravity-repo-architect-plugin/
 │           ├── motobook_github_coexistence.md # 4-Wall Quarantine & path invariants
 │           ├── openssf_scorecard_hardening.md # Token least-privilege & SHA pinning
 │           └── vibe_security_defense.md  # 5-Pass Pre-Launch Security (Gitleaks, Bearer, ECC)
-├── .gitattributes
-├── .gitignore
-├── LICENSE
-└── README.md
+├── .github/
+│   ├── dependabot.yml                    # Automated dependency monitoring
+│   ├── ISSUE_TEMPLATE/                   # Bug report & feature request templates
+│   ├── PULL_REQUEST_TEMPLATE.md          # Standardized PR review checklist
+│   └── workflows/
+│       └── ci.yml                        # OpenSSF-hardened syntax & schema validation CI
+├── .gitattributes                        # CRLF/LF line-ending firewall
+├── .gitignore                            # Motobook runtime quarantine
+├── LICENSE                               # MIT License
+├── README.md                             # Dual-Audience documentation
+└── SECURITY.md                           # OpenSSF vulnerability disclosure protocol
 ```
 
 ---
@@ -66,6 +125,7 @@ Trigger it with natural language or slash commands in chat:
 ```text
 /repo-architect audit
 /repo-architect scaffold cli
+/repo-architect vibe-security
 /repo-architect readme
 /repo-architect secure
 /repo-architect ship
@@ -74,7 +134,7 @@ Trigger it with natural language or slash commands in chat:
 ### Option B: Standalone PowerShell CLI
 Run the high-speed security and path auditor directly in any repository:
 ```powershell
-pwsh -NoProfile -File ~/.gemini/config/plugins/repo-architect-plugin/skills/repo-architect/scripts/audit_repo.ps1
+pwsh -NoProfile -File ~/.gemini/config/plugins/repo-architect-plugin/skills/repo-architect/scripts/audit_repo.ps1 -Strict
 ```
 
 Or scaffold a new repository archetype:
@@ -104,13 +164,13 @@ pwsh -NoProfile -File ~/.gemini/config/plugins/repo-architect-plugin/skills/repo
 
 3. **🏗️ Canonical Archetype Scaffolding (`scaffold`)**:
    - Generates production-ready configurations tailored to the project type:
-     - **Standalone CLI** (.NET / Rust / Go)
-     - **Antigravity Customization Plugin / MCP Server**
-     - **Modern Python Package** (PEP 518/621 `src/` layout)
-     - **Modern Fullstack Web Application**
+     - **Standalone CLI** (.NET / Rust / Go) + cross-platform binary release pipeline.
+     - **Antigravity Customization Plugin / MCP Server** with STDIO manifests.
+     - **Modern Python Package** (PEP 518/621 `src/` layout with `pyproject.toml`).
+     - **Modern Fullstack Web Application** with frontend/backend isolation.
 
 4. **📄 Dual-Audience README Engine (`readme`)**:
-   - Enforces Progressive Disclosure: 5-second visual hook (ASCII box card) and 30-second quickstart for end-users, with deep architectural links (`docs/architecture.md`) for engineers.
+   - Enforces Progressive Disclosure: 5-second visual hook (poster + ASCII box card) and 30-second quickstart for end-users, with deep architectural links (`docs/architecture.md`) for engineers.
 
 5. **🔒 OpenSSF Supply Chain Hardening & GitHub Rulesets (`secure`)**:
    - Automatically injects pinned 40-character commit SHAs, least-privilege token permissions, and automated Dependabot configuration.
@@ -131,7 +191,7 @@ pwsh -NoProfile -File ~/.gemini/config/plugins/repo-architect-plugin/skills/repo
 ### Local Verification
 Run the auditor against the plugin itself:
 ```powershell
-pwsh -NoProfile -File ./skills/repo-architect/scripts/audit_repo.ps1
+pwsh -NoProfile -File ./skills/repo-architect/scripts/audit_repo.ps1 -Strict
 ```
 
 For detailed architectural specs, see:

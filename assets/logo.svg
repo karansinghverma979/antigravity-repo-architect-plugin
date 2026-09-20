@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B0F19" />
+      <stop offset="50%" stop-color="#111827" />
+      <stop offset="100%" stop-color="#030712" />
+    </linearGradient>
+
+    <!-- Neon Cyan & Indigo Accents -->
+    <linearGradient id="primaryNeon" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00F2FE" />
+      <stop offset="50%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#6366F1" />
+    </linearGradient>
+
+    <linearGradient id="pillarGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="60%" stop-color="#1E3A8A" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00F2FE" stop-opacity="0.9" />
+      <stop offset="50%" stop-color="#3B82F6" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#6366F1" stop-opacity="0.9" />
+    </linearGradient>
+
+    <linearGradient id="goldAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FCD34D" />
+      <stop offset="100%" stop-color="#F59E0B" />
+    </linearGradient>
+
+    <!-- Glow Filters -->
+    <filter id="cyanGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="10" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="5" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Base Rounded Container -->
+  <rect x="16" y="16" width="480" height="480" rx="96" fill="url(#bgGrad)" stroke="url(#primaryNeon)" stroke-width="4" stroke-opacity="0.6" />
+
+  <!-- Subtle Cybernetic Grid Pattern -->
+  <g opacity="0.08" stroke="#38BDF8" stroke-width="1.5">
+    <line x1="64" y1="64" x2="448" y2="64" />
+    <line x1="64" y1="128" x2="448" y2="128" />
+    <line x1="64" y1="192" x2="448" y2="192" />
+    <line x1="64" y1="256" x2="448" y2="256" />
+    <line x1="64" y1="320" x2="448" y2="320" />
+    <line x1="64" y1="384" x2="448" y2="384" />
+    <line x1="64" y1="448" x2="448" y2="448" />
+
+    <line x1="64" y1="64" x2="64" y2="448" />
+    <line x1="128" y1="64" x2="128" y2="448" />
+    <line x1="192" y1="64" x2="192" y2="448" />
+    <line x1="256" y1="64" x2="256" y2="448" />
+    <line x1="320" y1="64" x2="320" y2="448" />
+    <line x1="384" y1="64" x2="384" y2="448" />
+    <line x1="448" y1="64" x2="448" y2="448" />
+  </g>
+
+  <!-- Decorative Corner Brackets -->
+  <path d="M 48 96 L 48 48 L 96 48" fill="none" stroke="#00F2FE" stroke-width="3" stroke-linecap="round" opacity="0.7" />
+  <path d="M 464 96 L 464 48 L 416 48" fill="none" stroke="#6366F1" stroke-width="3" stroke-linecap="round" opacity="0.7" />
+  <path d="M 48 416 L 48 464 L 96 464" fill="none" stroke="#00F2FE" stroke-width="3" stroke-linecap="round" opacity="0.7" />
+  <path d="M 464 416 L 464 464 L 416 464" fill="none" stroke="#6366F1" stroke-width="3" stroke-linecap="round" opacity="0.7" />
+
+  <!-- Ambient Glow Behind Monument -->
+  <circle cx="256" cy="240" r="140" fill="#38BDF8" opacity="0.12" filter="url(#cyanGlow)" />
+
+  <!-- ARCHITECTURAL MONUMENT / CITADEL -->
+
+  <!-- Pediment / Triangular Roof -->
+  <polygon points="256,88 108,172 404,172" fill="#1E293B" stroke="url(#primaryNeon)" stroke-width="3.5" filter="url(#softGlow)" />
+  
+  <!-- Pediment Inner Tympanum Detail -->
+  <polygon points="256,112 144,164 368,164" fill="#0F172A" stroke="#38BDF8" stroke-width="1.5" opacity="0.8" />
+  
+  <!-- Pediment Central Eye / Git Node -->
+  <circle cx="256" cy="144" r="10" fill="url(#goldAccent)" filter="url(#softGlow)" />
+  <circle cx="256" cy="144" r="18" fill="none" stroke="url(#goldAccent)" stroke-width="1.5" opacity="0.6" />
+
+  <!-- Entablature / Architrave Beam -->
+  <rect x="116" y="176" width="280" height="20" rx="3" fill="#1E293B" stroke="url(#primaryNeon)" stroke-width="2.5" />
+  <line x1="126" y1="186" x2="386" y2="186" stroke="#00F2FE" stroke-width="1" stroke-opacity="0.7" />
+
+  <!-- Classical Architectural Pillars (Fluted) -->
+  <!-- Pillar 1 (Far Left) -->
+  <rect x="136" y="202" width="28" height="156" rx="4" fill="url(#pillarGrad)" stroke="#38BDF8" stroke-width="1.5" />
+  <line x1="145" y1="206" x2="145" y2="354" stroke="#00F2FE" stroke-width="1" opacity="0.4" />
+  <line x1="155" y1="206" x2="155" y2="354" stroke="#00F2FE" stroke-width="1" opacity="0.4" />
+
+  <!-- Pillar 2 (Mid Left) -->
+  <rect x="194" y="202" width="28" height="156" rx="4" fill="url(#pillarGrad)" stroke="#38BDF8" stroke-width="1.5" />
+  <line x1="203" y1="206" x2="203" y2="354" stroke="#00F2FE" stroke-width="1" opacity="0.4" />
+  <line x1="213" y1="206" x2="213" y2="354" stroke="#00F2FE" stroke-width="1" opacity="0.4" />
+
+  <!-- Pillar 3 (Mid Right) -->
+  <rect x="290" y="202" width="28" height="156" rx="4" fill="url(#pillarGrad)" stroke="#38BDF8" stroke-width="1.5" />
+  <line x1="299" y1="206" x2="299" y2="354" stroke="#00F2FE" stroke-width="1" opacity="0.4" />
+  <line x1="309" y1="206" x2="309" y2="354" stroke="#00F2FE" stroke-width="1" opacity="0.4" />
+
+  <!-- Pillar 4 (Far Right) -->
+  <rect x="348" y="202" width="28" height="156" rx="4" fill="url(#pillarGrad)" stroke="#38BDF8" stroke-width="1.5" />
+  <line x1="357" y1="206" x2="357" y2="354" stroke="#00F2FE" stroke-width="1" opacity="0.4" />
+  <line x1="367" y1="206" x2="367" y2="354" stroke="#00F2FE" stroke-width="1" opacity="0.4" />
+
+  <!-- CENTRAL CYBER SHIELD (OpenSSF Sentry) -->
+  <g filter="url(#cyanGlow)">
+    <path d="M 256 196 L 296 220 L 296 280 C 296 320 256 348 256 348 C 256 348 216 320 216 280 L 216 220 Z" 
+          fill="url(#shieldGrad)" stroke="#FFFFFF" stroke-width="2.5" opacity="0.95" />
+    
+    <!-- Shield Inner Cyber Emblem: Branch / Lock Tree -->
+    <!-- Central trunk -->
+    <line x1="256" y1="230" x2="256" y2="295" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" />
+    <!-- Branch Left -->
+    <path d="M 256 260 Q 236 250 236 240" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" />
+    <circle cx="236" cy="238" r="4.5" fill="#FCD34D" />
+    <!-- Branch Right -->
+    <path d="M 256 272 Q 276 262 276 252" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" />
+    <circle cx="276" cy="250" r="4.5" fill="#00F2FE" />
+    <!-- Root Node -->
+    <circle cx="256" cy="298" r="5" fill="#FFFFFF" />
+  </g>
+
+  <!-- Monument Stylobate (Stepped Base) -->
+  <!-- Step 1 -->
+  <rect x="116" y="362" width="280" height="14" rx="2" fill="#1E293B" stroke="#38BDF8" stroke-width="2" />
+  <!-- Step 2 -->
+  <rect x="96" y="378" width="320" height="16" rx="3" fill="#0F172A" stroke="url(#primaryNeon)" stroke-width="2.5" />
+  <!-- Step 3 (Foundation) -->
+  <rect x="76" y="396" width="360" height="18" rx="4" fill="#030712" stroke="#6366F1" stroke-width="2" />
+
+  <!-- Subtle Circuit Traces Grounding the Base -->
+  <path d="M 120 422 L 120 440 L 160 440" fill="none" stroke="#00F2FE" stroke-width="2" stroke-linecap="round" opacity="0.6" />
+  <circle cx="164" cy="440" r="3.5" fill="#00F2FE" />
+
+  <path d="M 392 422 L 392 440 L 352 440" fill="none" stroke="#6366F1" stroke-width="2" stroke-linecap="round" opacity="0.6" />
+  <circle cx="348" cy="440" r="3.5" fill="#6366F1" />
+
+  <path d="M 256 422 L 256 448" fill="none" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" opacity="0.7" />
+  <circle cx="256" cy="452" r="4" fill="#FCD34D" />
+</svg>

@@ -1,5 +1,22 @@
 {
   "name": "repo-architect-plugin",
   "description": "Autonomous GitHub Repository Architect, OpenSSF Security Hardener & Dual-Audience Documentation Engine",
-  "version": "1.0.0"
+  "version": "1.1.0",
+  "author": "Karan Singh Verma",
+  "license": "MIT",
+  "homepage": "https://github.com/karansinghverma979/antigravity-repo-architect-plugin",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/karansinghverma979/antigravity-repo-architect-plugin.git"
+  },
+  "keywords": [
+    "antigravity",
+    "github",
+    "openssf",
+    "security-hardener",
+    "slsa",
+    "repo-architect",
+    "scaffolder",
+    "audit"
+  ]
 }

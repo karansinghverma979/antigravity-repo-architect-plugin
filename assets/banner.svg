@@ -1,0 +1,223 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070A12" />
+      <stop offset="40%" stop-color="#0B1120" />
+      <stop offset="80%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#050811" />
+    </linearGradient>
+
+    <!-- Neon Glow Gradients -->
+    <linearGradient id="cyanPurple" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00F2FE" />
+      <stop offset="50%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#818CF8" />
+    </linearGradient>
+
+    <linearGradient id="pillarGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="60%" stop-color="#1E3A8A" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00F2FE" stop-opacity="0.95" />
+      <stop offset="50%" stop-color="#3B82F6" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#6366F1" stop-opacity="0.95" />
+    </linearGradient>
+
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" stop-opacity="0.75" />
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0.85" />
+    </linearGradient>
+
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FCD34D" />
+      <stop offset="100%" stop-color="#F59E0B" />
+    </linearGradient>
+
+    <!-- Filters for atmospheric glow -->
+    <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <filter id="heroAura" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="35" result="blur" />
+    </filter>
+  </defs>
+
+  <style>
+    .font-title { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; font-weight: 900; }
+    .font-sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+    .font-mono { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  </style>
+
+  <!-- Background Base -->
+  <rect width="1200" height="500" rx="16" fill="url(#bgGradient)" stroke="#1E293B" stroke-width="2" />
+
+  <!-- Ambient Radial Glows -->
+  <circle cx="240" cy="250" r="180" fill="#00F2FE" opacity="0.08" filter="url(#heroAura)" />
+  <circle cx="850" cy="180" r="220" fill="#6366F1" opacity="0.07" filter="url(#heroAura)" />
+
+  <!-- Grid Pattern Overlay -->
+  <g opacity="0.04" stroke="#38BDF8" stroke-width="1">
+    <line x1="0" y1="50" x2="1200" y2="50" /><line x1="0" y1="100" x2="1200" y2="100" />
+    <line x1="0" y1="150" x2="1200" y2="150" /><line x1="0" y1="200" x2="1200" y2="200" />
+    <line x1="0" y1="250" x2="1200" y2="250" /><line x1="0" y1="300" x2="1200" y2="300" />
+    <line x1="0" y1="350" x2="1200" y2="350" /><line x1="0" y1="400" x2="1200" y2="400" />
+    <line x1="0" y1="450" x2="1200" y2="450" />
+    <line x1="100" y1="0" x2="100" y2="500" /><line x1="200" y1="0" x2="200" y2="500" />
+    <line x1="300" y1="0" x2="300" y2="500" /><line x1="400" y1="0" x2="400" y2="500" />
+    <line x1="500" y1="0" x2="500" y2="500" /><line x1="600" y1="0" x2="600" y2="500" />
+    <line x1="700" y1="0" x2="700" y2="500" /><line x1="800" y1="0" x2="800" y2="500" />
+    <line x1="900" y1="0" x2="900" y2="500" /><line x1="1000" y1="0" x2="1000" y2="500" />
+    <line x1="1100" y1="0" x2="1100" y2="500" />
+  </g>
+
+  <!-- Technical Circuit Decorative Lines -->
+  <path d="M 40 40 L 100 40 L 120 60" fill="none" stroke="#00F2FE" stroke-width="1.5" opacity="0.4" />
+  <circle cx="120" cy="60" r="2.5" fill="#00F2FE" opacity="0.7" />
+  <path d="M 1160 40 L 1100 40 L 1080 60" fill="none" stroke="#818CF8" stroke-width="1.5" opacity="0.4" />
+  <circle cx="1080" cy="60" r="2.5" fill="#818CF8" opacity="0.7" />
+  <path d="M 40 460 L 100 460 L 120 440" fill="none" stroke="#00F2FE" stroke-width="1.5" opacity="0.4" />
+  <circle cx="120" cy="440" r="2.5" fill="#00F2FE" opacity="0.7" />
+  <path d="M 1160 460 L 1100 460 L 1080 440" fill="none" stroke="#818CF8" stroke-width="1.5" opacity="0.4" />
+  <circle cx="1080" cy="440" r="2.5" fill="#818CF8" opacity="0.7" />
+
+  <!-- LEFT HERO EMBLEM: THE CYBER CITADEL & SHIELD -->
+  <g transform="translate(40, 20)">
+    <!-- Monument Glow -->
+    <circle cx="200" cy="220" r="120" fill="#38BDF8" opacity="0.12" filter="url(#heroAura)" />
+
+    <!-- Pediment (Triangular Gable) -->
+    <polygon points="200,90 70,165 330,165" fill="#1E293B" stroke="url(#cyanPurple)" stroke-width="3" filter="url(#neonGlow)" />
+    <polygon points="200,110 100,158 300,158" fill="#0F172A" stroke="#38BDF8" stroke-width="1.5" opacity="0.8" />
+    
+    <!-- Central Pediment Node -->
+    <circle cx="200" cy="138" r="8" fill="url(#goldGrad)" />
+    <circle cx="200" cy="138" r="14" fill="none" stroke="url(#goldGrad)" stroke-width="1.5" opacity="0.5" />
+
+    <!-- Architrave Beam -->
+    <rect x="75" y="168" width="250" height="18" rx="2" fill="#1E293B" stroke="url(#cyanPurple)" stroke-width="2" />
+    <line x1="85" y1="177" x2="315" y2="177" stroke="#00F2FE" stroke-width="1" stroke-opacity="0.7" />
+
+    <!-- Architectural Pillars (Fluted) -->
+    <!-- Pillar 1 -->
+    <rect x="92" y="192" width="24" height="135" rx="3" fill="url(#pillarGrad)" stroke="#38BDF8" stroke-width="1.5" />
+    <line x1="100" y1="195" x2="100" y2="324" stroke="#00F2FE" stroke-width="1" opacity="0.4" />
+    <line x1="108" y1="195" x2="108" y2="324" stroke="#00F2FE" stroke-width="1" opacity="0.4" />
+
+    <!-- Pillar 2 -->
+    <rect x="144" y="192" width="24" height="135" rx="3" fill="url(#pillarGrad)" stroke="#38BDF8" stroke-width="1.5" />
+    <line x1="152" y1="195" x2="152" y2="324" stroke="#00F2FE" stroke-width="1" opacity="0.4" />
+    <line x1="160" y1="195" x2="160" y2="324" stroke="#00F2FE" stroke-width="1" opacity="0.4" />
+
+    <!-- Pillar 3 -->
+    <rect x="232" y="192" width="24" height="135" rx="3" fill="url(#pillarGrad)" stroke="#38BDF8" stroke-width="1.5" />
+    <line x1="240" y1="195" x2="240" y2="324" stroke="#00F2FE" stroke-width="1" opacity="0.4" />
+    <line x1="248" y1="195" x2="248" y2="324" stroke="#00F2FE" stroke-width="1" opacity="0.4" />
+
+    <!-- Pillar 4 -->
+    <rect x="284" y="192" width="24" height="135" rx="3" fill="url(#pillarGrad)" stroke="#38BDF8" stroke-width="1.5" />
+    <line x1="292" y1="195" x2="292" y2="324" stroke="#00F2FE" stroke-width="1" opacity="0.4" />
+    <line x1="300" y1="195" x2="300" y2="324" stroke="#00F2FE" stroke-width="1" opacity="0.4" />
+
+    <!-- Central Sentry Shield -->
+    <g filter="url(#neonGlow)">
+      <path d="M 200 188 L 235 208 L 235 260 C 235 295 200 320 200 320 C 200 320 165 295 165 260 L 165 208 Z" 
+            fill="url(#shieldGrad)" stroke="#FFFFFF" stroke-width="2.5" opacity="0.95" />
+      
+      <!-- Shield Key & Commit Node Tree -->
+      <line x1="200" y1="215" x2="200" y2="275" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" />
+      <path d="M 200 242 Q 182 234 182 225" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
+      <circle cx="182" cy="223" r="3.5" fill="#FCD34D" />
+      <path d="M 200 254 Q 218 246 218 237" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" />
+      <circle cx="218" cy="235" r="3.5" fill="#00F2FE" />
+      <circle cx="200" cy="278" r="4" fill="#FFFFFF" />
+    </g>
+
+    <!-- Stylobate Base Steps -->
+    <rect x="75" y="331" width="250" height="12" rx="2" fill="#1E293B" stroke="#38BDF8" stroke-width="1.5" />
+    <rect x="55" y="345" width="290" height="14" rx="2.5" fill="#0F172A" stroke="url(#cyanPurple)" stroke-width="2" />
+    <rect x="35" y="361" width="330" height="16" rx="3" fill="#030712" stroke="#6366F1" stroke-width="1.5" />
+  </g>
+
+  <!-- RIGHT HERO CONTENT: BRAND & ARCHITECTURE -->
+  <g transform="translate(450, 75)">
+    <!-- Pill Badge: Antigravity Ecosystem -->
+    <rect x="0" y="0" width="275" height="30" rx="15" fill="#1E293B" stroke="#38BDF8" stroke-width="1.2" />
+    <circle cx="15" cy="15" r="5" fill="#00F2FE" filter="url(#neonGlow)" />
+    <text x="28" y="20" fill="#38BDF8" class="font-mono" font-size="11.5" font-weight="700" letter-spacing="1.2">GOOGLE ANTIGRAVITY PLUGIN</text>
+
+    <!-- Version Badge -->
+    <rect x="285" y="0" width="75" height="30" rx="15" fill="#0F172A" stroke="#818CF8" stroke-width="1.2" />
+    <text x="322" y="19.5" fill="#A5B4FC" class="font-mono" font-size="11.5" font-weight="700" text-anchor="middle">v1.1.0</text>
+
+    <!-- Main Title -->
+    <text x="0" y="90" fill="#FFFFFF" class="font-title" font-size="52" letter-spacing="-1">REPO ARCHITECT</text>
+    <text x="450" y="90" fill="url(#cyanPurple)" class="font-title" font-size="52" letter-spacing="-1">.</text>
+
+    <!-- Tagline -->
+    <text x="0" y="125" fill="#94A3B8" class="font-sans" font-size="17.5" font-weight="400">
+      Autonomous Repository Architect, OpenSSF Security Hardener &amp; Dual-Audience Engine
+    </text>
+
+    <!-- 3 SOVEREIGN FEATURE CARDS -->
+    <g transform="translate(0, 160)">
+      <!-- Card 1: OpenSSF Hardened -->
+      <g transform="translate(0, 0)">
+        <rect width="215" height="92" rx="10" fill="url(#cardGrad)" stroke="#38BDF8" stroke-width="1" stroke-opacity="0.4" />
+        <rect x="12" y="12" width="28" height="28" rx="6" fill="#0369A1" fill-opacity="0.4" stroke="#00F2FE" stroke-width="1" />
+        <text x="26" y="31" fill="#00F2FE" class="font-sans" font-size="15" text-anchor="middle">🛡️</text>
+        <text x="48" y="30" fill="#F8FAFC" class="font-title" font-size="13.5">OpenSSF Grade A</text>
+        <text x="14" y="56" fill="#94A3B8" class="font-sans" font-size="11">Pinned 40-Char SHAs</text>
+        <text x="14" y="73" fill="#64748B" class="font-sans" font-size="10.5">Least-Privilege Tokens</text>
+      </g>
+
+      <!-- Card 2: Workstation Quarantine -->
+      <g transform="translate(230, 0)">
+        <rect width="225" height="92" rx="10" fill="url(#cardGrad)" stroke="#818CF8" stroke-width="1" stroke-opacity="0.4" />
+        <rect x="12" y="12" width="28" height="28" rx="6" fill="#4338CA" fill-opacity="0.4" stroke="#818CF8" stroke-width="1" />
+        <text x="26" y="31" fill="#818CF8" class="font-sans" font-size="15" text-anchor="middle">⚡</text>
+        <text x="48" y="30" fill="#F8FAFC" class="font-title" font-size="13.5">Zero-Leak Shield</text>
+        <text x="14" y="56" fill="#94A3B8" class="font-sans" font-size="11">Dynamic Path Expansion</text>
+        <text x="14" y="73" fill="#64748B" class="font-sans" font-size="10.5">DB &amp; Runtime Decoupled</text>
+      </g>
+
+      <!-- Card 3: Dual-Audience Documentation -->
+      <g transform="translate(470, 0)">
+        <rect width="225" height="92" rx="10" fill="url(#cardGrad)" stroke="#10B981" stroke-width="1" stroke-opacity="0.4" />
+        <rect x="12" y="12" width="28" height="28" rx="6" fill="#047857" fill-opacity="0.4" stroke="#10B981" stroke-width="1" />
+        <text x="26" y="31" fill="#10B981" class="font-sans" font-size="15" text-anchor="middle">📄</text>
+        <text x="48" y="30" fill="#F8FAFC" class="font-title" font-size="13.5">Dual-Audience Docs</text>
+        <text x="14" y="56" fill="#94A3B8" class="font-sans" font-size="11">5-Sec Hook + ASCII Cards</text>
+        <text x="14" y="73" fill="#64748B" class="font-sans" font-size="10.5">Progressive Disclosure</text>
+      </g>
+    </g>
+
+    <!-- Bottom Terminal Command / Execution Pill -->
+    <g transform="translate(0, 275)">
+      <rect width="695" height="42" rx="8" fill="#030712" stroke="#334155" stroke-width="1" />
+      <text x="16" y="26" fill="#10B981" class="font-mono" font-size="13" font-weight="700">❯</text>
+      <text x="34" y="25" fill="#E2E8F0" class="font-mono" font-size="12.5">/repo-architect audit</text>
+      <text x="210" y="25" fill="#64748B" class="font-mono" font-size="12">|</text>
+      <text x="225" y="25" fill="#38BDF8" class="font-mono" font-size="12.5">pwsh ./skills/repo-architect/scripts/audit_repo.ps1 -Strict</text>
+    </g>
+  </g>
+
+  <!-- Bottom Spec Ribbon -->
+  <g transform="translate(40, 445)">
+    <line x1="0" y1="0" x2="1120" y2="0" stroke="#1E293B" stroke-width="1" />
+    <text x="0" y="25" fill="#64748B" class="font-mono" font-size="11">OPENSSF SCORECARD STANDARD</text>
+    <circle cx="205" cy="21" r="2" fill="#475569" />
+    <text x="220" y="25" fill="#64748B" class="font-mono" font-size="11">POWERSHELL 7+ HIGH-SPEED AST</text>
+    <circle cx="435" cy="21" r="2" fill="#475569" />
+    <text x="450" y="25" fill="#64748B" class="font-mono" font-size="11">ZERO MACHINE-SPECIFIC LEAKS</text>
+    <circle cx="655" cy="21" r="2" fill="#475569" />
+    <text x="670" y="25" fill="#64748B" class="font-mono" font-size="11">GITHUB PUSH RULESET DEFENSE</text>
+    <circle cx="880" cy="21" r="2" fill="#475569" />
+    <text x="895" y="25" fill="#64748B" class="font-mono" font-size="11">MIT LICENSE</text>
+  </g>
+</svg>
