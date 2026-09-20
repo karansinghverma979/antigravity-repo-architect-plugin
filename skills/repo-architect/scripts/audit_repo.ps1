@@ -269,7 +269,7 @@ if (-not (Test-Path $ReadmePath)) {
     Report-Result -Category "Documentation" -Status "FAIL" -Message "Missing 'README.md'."
 } else {
     $readmeContent = Get-Content -Path $ReadmePath -Raw
-    $hasAscii = ($readmeContent -match '┌' -or $readmeContent -match '```text' -or $readmeContent -match '```mermaid')
+    $hasAscii = ($readmeContent -match '[\u2500-\u257F]' -or $readmeContent -match '```text' -or $readmeContent -match '```mermaid')
     $hasQuickstart = ($readmeContent -match '(?i)##?\s*.*quickstart' -or $readmeContent -match '(?i)##?\s*.*installation')
     
     if ($hasAscii -and $hasQuickstart) {
