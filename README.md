@@ -52,22 +52,24 @@ The repository comes equipped with high-resolution vector and raster branding as
 
 ---
 
-## 🏛️ Architecture
+## 🏛️ Full-Spec Antigravity Plugin Architecture
+
+This repository strictly adheres to the official Google Antigravity Plugin Specification (`plugins/<name>/`):
 
 ```text
 antigravity-repo-architect-plugin/
-├── assets/
-│   ├── poster.png                        # High-resolution hero banner poster
-│   ├── poster.svg                        # Vector widescreen repository poster
-│   ├── logo.png                          # High-resolution brand logo icon
-│   ├── logo.svg                          # Vector brand logo icon
-│   └── banner.svg                        # Alternative banner distribution
+├── plugin.json                           # Required: Antigravity plugin manifest & metadata
+├── mcp_config.json                       # Optional: MCP server definition (repo-architect tools)
+├── hooks.json                            # Optional: Lifecycle hooks configuration (pre/post tool sentry)
+├── mcp/
+│   └── server.py                         # Native stdio JSON-RPC MCP server
+├── rules/
+│   └── AGENTS.md                         # Optional: Operational repository invariants merged on load
 ├── agents/
-│   └── repo_architect.md                 # Autonomous Agent definition
-├── plugin.json                           # Antigravity Plugin manifest
+│   └── repo_architect.md                 # Optional: Autonomous Agent definition & execution modes
 ├── skills/
 │   └── repo-architect/
-│       ├── SKILL.md                      # Antigravity Skill instructions & command router
+│       ├── SKILL.md                      # Optional: Skill instructions & command router
 │       ├── scripts/
 │       │   ├── audit_repo.ps1            # 50ms high-speed security, path & OpenSSF auditor
 │       │   └── scaffold_repo.ps1         # Canonical repository scaffolder
@@ -82,6 +84,12 @@ antigravity-repo-architect-plugin/
 │           ├── motobook_github_coexistence.md # 4-Wall Quarantine & path invariants
 │           ├── openssf_scorecard_hardening.md # Token least-privilege & SHA pinning
 │           └── vibe_security_defense.md  # 5-Pass Pre-Launch Security (Gitleaks, Bearer, ECC)
+├── assets/
+│   ├── poster.png                        # High-resolution hero banner poster
+│   ├── poster.svg                        # Vector widescreen repository poster
+│   ├── logo.png                          # High-resolution brand logo icon
+│   ├── logo.svg                          # Vector brand logo icon
+│   └── banner.svg                        # Alternative banner distribution
 ├── .github/
 │   ├── dependabot.yml                    # Automated dependency monitoring
 │   ├── ISSUE_TEMPLATE/                   # Bug report & feature request templates
@@ -141,6 +149,12 @@ Or scaffold a new repository archetype:
 ```powershell
 pwsh -NoProfile -File ~/.gemini/config/plugins/repo-architect-plugin/skills/repo-architect/scripts/scaffold_repo.ps1 -Archetype cli
 ```
+
+### Option C: Model Context Protocol (MCP)
+When the plugin is loaded, Antigravity automatically launches the zero-dependency Python stdio MCP server (`mcp/server.py` via `mcp_config.json`), exposing native tool endpoints:
+- `repo_architect_audit`: Programmatic execution of the 50ms security & path sentry.
+- `repo_architect_scaffold`: Programmatic injection of OpenSSF archetypes (`cli`, `mcp`, `python`, `web`).
+- `repo_architect_get_ruleset`: Direct retrieval of baseline declarative GitHub Push & Branch Rulesets.
 
 ---
 

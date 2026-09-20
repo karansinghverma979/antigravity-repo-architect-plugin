@@ -1,0 +1,26 @@
+{
+  "repo-path-sentry": {
+    "enabled": false,
+    "PreToolUse": [
+      {
+        "matcher": "run_command",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "pwsh -NoProfile -Command \"if ($env:COMMAND_LINE -match 'git push') { Write-Host '[Repo Sentry] Verifying repository quarantine posture...' }\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  },
+  "repo-audit-reminder": {
+    "enabled": false,
+    "Stop": [
+      {
+        "type": "command",
+        "command": "pwsh -NoProfile -Command \"Write-Host '[Repo Architect] Audit lifecycle complete.'\""
+      }
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "repo-architect": {
+      "command": "python",
+      "args": [
+        "mcp/server.py"
+      ],
+      "disabled": false
+    }
+  }
+}
