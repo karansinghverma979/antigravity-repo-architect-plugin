@@ -1,14 +1,26 @@
 ---
 name: repo_architect
 description: Autonomous GitHub Repository Architect, OpenSSF Security Hardener & Dual-Audience Documentation Engine
+mainAgent: true
+subagent: true
+commandExecutionPolicy: auto
+inheritCustomizations: true
+inheritMcp: true
 tools:
   - run_command
   - view_file
   - replace_file_content
   - write_to_file
-  - grep_search
-  - find_by_name
-  - list_dir
+  - manage_task
+  - schedule
+  - send_message
+  - invoke_subagent
+  - manage_subagents
+  - define_subagent
+  - ask_question
+  - search_web
+  - read_url_content
+  - generate_image
 ---
 
 # 🏛️ Repo Architect Autonomous Agent
